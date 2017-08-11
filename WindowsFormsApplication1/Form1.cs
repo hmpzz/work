@@ -30,7 +30,7 @@ namespace WindowsFormsApplication1
 
             string varname;
 
-
+            //生成VB的SQL代码
             if (this.RadioButton1.Checked)
             {
                 if (this.textBox3.Text.ToString().Length == 0)
@@ -49,7 +49,7 @@ namespace WindowsFormsApplication1
 
                 this.TextBox2.Text =sql+" \""+ this.TextBox1.Text.Replace("\r\n", " \" & vbcrlf & _ \r\n \"") +"\"";
             }
-            else if (this.RadioButton2.Checked)
+            else if (this.RadioButton2.Checked) //生成C#的SQL代码
             
             {
                 if (this.textBox3.Text.ToString().Length == 0)
@@ -77,7 +77,7 @@ namespace WindowsFormsApplication1
 
         private void button4_Click(object sender, EventArgs e)
         {
-
+            //连接到数据库
 
 
             SqlConnection sqlcon = new SqlConnection();
@@ -88,6 +88,7 @@ namespace WindowsFormsApplication1
 
             string sql;
 
+            //数据库连接的参数
             List<string> DataBaseParameter=new List<string>();
 
             DataBaseParameter = GetDataBasePara();
@@ -103,6 +104,7 @@ namespace WindowsFormsApplication1
                 return;
             }
 
+            //如果连接成功就把新参数写入APP.CONFIG
             config.UpdateAppConfig("server", this.TextBox4.Text.Trim());
             config.UpdateAppConfig("database", this.TextBox5.Text.Trim());
             config.UpdateAppConfig("userid", this.textBox10.Text.Trim());
@@ -121,7 +123,7 @@ namespace WindowsFormsApplication1
 
             this.ComboBox1.Items.Clear();
             
-
+            //将所连接的数据库的表名显示到列表里
             foreach (DataRow dr in dt.Rows)
             {
                 this.ComboBox1.Items.Add(dr["name"]);
@@ -136,7 +138,7 @@ namespace WindowsFormsApplication1
         private void Form1_Load(object sender, EventArgs e)
         {
             
-          
+            //从配置文件里读取上次的连接数据库的各种参数
             this.TextBox4.Text = config.GetAppConfig("server");
             this.TextBox5.Text = config.GetAppConfig("database");
             this.textBox10.Text = config.GetAppConfig("userid");
@@ -157,6 +159,7 @@ namespace WindowsFormsApplication1
                 return;
             }
 
+            //得到满足界面上选择条件的表
             dt = GetDataTable();
 
             string sqlnow="";
@@ -165,6 +168,7 @@ namespace WindowsFormsApplication1
 
             string[] colname = this.TextBox6.Text.Trim().Split(new char[] { ','});
 
+            //生成SQL
             foreach (DataRow dr in dt.Rows)
             {
                 sqlnow = "insert into " + this.ComboBox1.Text.Trim() + " ( " + this.TextBox6.Text.Trim() + " ) values ( ";
@@ -228,6 +232,7 @@ namespace WindowsFormsApplication1
             {
 
                 List<string> ColName = new List<string>();
+                //得到所选表名的List
                 ColName = Model1.getSqlColumnName(this.ComboBox1.Text, sqlcon);
 
                 string s;
@@ -243,14 +248,17 @@ namespace WindowsFormsApplication1
 
             string sql;
 
+
+            //where条件
             string requirement;
             requirement = "";
-
             if (this.TextBox7.Text.Trim().Length > 0)
             {
                 requirement = " where " + this.TextBox7.Text.Trim();
             }
 
+
+            //是否是只生成一行
             string top;
             top = "";
             if (this.CheckBox1.Checked)
@@ -258,6 +266,8 @@ namespace WindowsFormsApplication1
                 top = " top 1 ";
             }
 
+
+            //生成完整SQL
             sql = "select " + top + this.TextBox6.Text.Trim() + " from " + this.ComboBox1.Text.Trim() + requirement;
 
             sqlcmd.CommandText = sql;
@@ -281,6 +291,7 @@ namespace WindowsFormsApplication1
                 return;
             }
 
+            //得到满足界面上选择条件的表
             dt = GetDataTable();
 
 
@@ -308,6 +319,13 @@ namespace WindowsFormsApplication1
             return sqlcon1;
         }
 
+
+        /// <summary>
+        /// 取得表里的所有的字段名
+        /// </summary>
+        /// <param name="TableName">表名</param>
+        /// <param name="conn">数据库连接</param>
+        /// <returns>包含表名的List</returns>
         public static  List<string> getSqlColumnName(string TableName,SqlConnection conn)
         {
             List<string> columnName = new List<string>();
