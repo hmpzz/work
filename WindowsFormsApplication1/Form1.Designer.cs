@@ -39,6 +39,7 @@
             this.TextBox2 = new System.Windows.Forms.TextBox();
             this.TextBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.Button3 = new System.Windows.Forms.Button();
             this.CheckBox1 = new System.Windows.Forms.CheckBox();
             this.Button2 = new System.Windows.Forms.Button();
@@ -72,7 +73,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(659, 521);
+            this.tabControl1.Size = new System.Drawing.Size(660, 517);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -169,6 +170,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.checkBox2);
             this.tabPage2.Controls.Add(this.Button3);
             this.tabPage2.Controls.Add(this.CheckBox1);
             this.tabPage2.Controls.Add(this.Button2);
@@ -191,10 +193,20 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(651, 495);
+            this.tabPage2.Size = new System.Drawing.Size(652, 491);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "导出JSON";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // checkBox2
+            // 
+            this.checkBox2.AutoSize = true;
+            this.checkBox2.Location = new System.Drawing.Point(472, 85);
+            this.checkBox2.Name = "checkBox2";
+            this.checkBox2.Size = new System.Drawing.Size(96, 16);
+            this.checkBox2.TabIndex = 40;
+            this.checkBox2.Text = "JSON忽略空值";
+            this.checkBox2.UseVisualStyleBackColor = true;
             // 
             // Button3
             // 
@@ -371,7 +383,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(659, 521);
+            this.ClientSize = new System.Drawing.Size(660, 517);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -419,6 +431,7 @@
         internal System.Windows.Forms.Label Label3;
         internal System.Windows.Forms.Label Label2;
         internal System.Windows.Forms.Label label8;
+        internal System.Windows.Forms.CheckBox checkBox2;
     }
 }
 

@@ -84,6 +84,11 @@ namespace WindowsFormsApplication1
             SqlCommand sqlcmd = new SqlCommand();
             SqlDataAdapter sqlda = new SqlDataAdapter();
 
+            
+
+
+
+
             DataTable dt = new DataTable();
 
             string sql;
@@ -104,6 +109,10 @@ namespace WindowsFormsApplication1
                 return;
             }
 
+            
+            
+
+
             //如果连接成功就把新参数写入APP.CONFIG
             config.UpdateAppConfig("server", this.TextBox4.Text.Trim());
             config.UpdateAppConfig("database", this.TextBox5.Text.Trim());
@@ -111,14 +120,30 @@ namespace WindowsFormsApplication1
             config.UpdateAppConfig("password", Helper.Security.EncryptDES(this.textBox9.Text.Trim()));
 
 
+
+            //SqlTransaction sqltran = sqlcon.BeginTransaction();
             sqlcmd.Connection = sqlcon;
+            //sqlcmd.Transaction = sqltran;
 
-            sql = "select name from sys.objects where type='U' order by name";
 
-            sqlcmd.CommandText = sql;
-            sqlda.SelectCommand = sqlcmd;
 
-            sqlda.Fill(dt);
+            try
+            {
+                sql = "select name from sys.objects where type='U' order by name";
+
+                sqlcmd.CommandText = sql;
+                sqlda.SelectCommand = sqlcmd;
+
+                sqlda.Fill(dt);
+
+                //sqltran.Commit();
+            }
+            catch (Exception)
+            {
+                //sqltran.Rollback();
+                throw;
+            }
+            
 
 
             this.ComboBox1.Items.Clear();
@@ -293,9 +318,16 @@ namespace WindowsFormsApplication1
 
             //得到满足界面上选择条件的表
             dt = GetDataTable();
-
-
-            string s = Helper.JsonHelper.SerializeObject(dt);
+            string s;
+            if (this.checkBox2.Checked)
+            {
+                s = Helper.JsonHelper.SerializeObject(dt, Newtonsoft.Json.NullValueHandling.Ignore);
+            }
+            else
+            {
+                s = Helper.JsonHelper.SerializeObject(dt, Newtonsoft.Json.NullValueHandling.Include);
+            }
+            
 
             this.textBox8.Text = s;
         }

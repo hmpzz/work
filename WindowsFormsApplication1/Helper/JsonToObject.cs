@@ -13,13 +13,14 @@ namespace Helper
         /// 将对象序列化为JSON格式
         /// </summary>
         /// <param name="o">对象</param>
+        /// <param name="nullvalue">是否导空值</param>
         /// <returns>json字符串</returns>
-        public static string SerializeObject(object o)
+        public static string SerializeObject(object o,NullValueHandling nullvalue)
         {
             JsonSerializerSettings JSS = new JsonSerializerSettings();
 
             JSS.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore; //循环引用忽略
-            JSS.NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore;//空值不导
+            JSS.NullValueHandling =nullvalue;//空值不导
 
 
             string json = JsonConvert.SerializeObject(o, Formatting.Indented, JSS);
