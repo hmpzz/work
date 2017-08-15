@@ -129,7 +129,21 @@ namespace WindowsFormsApplication1
 
             try
             {
-                sql = "select name from sys.objects where type='U' order by name";
+                sql = "Select right(rtrim(left(@@Version, 26)), 4)";
+                sqlcmd.CommandText = sql;
+
+                string s1 = sqlcmd.ExecuteScalar().ToString();
+
+                if (s1 == "2000")
+                {
+                    sql = "select name from sysobjects where type='U' order by name";
+                }
+                else
+                {
+                    sql = "select name from sys.objects where type='U' order by name";
+                }
+
+                
 
                 sqlcmd.CommandText = sql;
                 sqlda.SelectCommand = sqlcmd;
@@ -191,19 +205,36 @@ namespace WindowsFormsApplication1
 
             string sqlsum="";
 
-            string[] colname = this.TextBox6.Text.Trim().Split(new char[] { ','});
+            string[] colname = this.TextBox6.Text.Trim().Replace("\r\n","").Split(new char[] { ','});
 
             //生成SQL
             foreach (DataRow dr in dt.Rows)
             {
-                sqlnow = "insert into " + this.ComboBox1.Text.Trim() + " ( " + this.TextBox6.Text.Trim() + " ) values ( ";
 
-                foreach (string colname1 in colname)
+                if (this.radioButton3.Checked)
                 {
-                    sqlnow = sqlnow + "'"+ dr[colname1].ToString() +"',";
-                }
+                    sqlnow = "insert into " + this.ComboBox1.Text.Trim() + " ( " + this.TextBox6.Text.Trim() + " ) \r\n select \r\n ";
 
-                sqlsum = sqlsum + sqlnow.Substring(0,sqlnow.Length-1)+") \r\n";
+                    foreach (string colname1 in colname)
+                    {
+                        sqlnow = sqlnow + "'" + dr[colname1.Trim()].ToString() + "' as " + colname1 + ", \r\n";
+                    }
+
+                    sqlsum = sqlsum + sqlnow.Substring(0, sqlnow.Length - 4) + " \r\n";
+                }
+                else
+                {
+
+                    sqlnow = "insert into " + this.ComboBox1.Text.Trim() + " ( " + this.TextBox6.Text.Trim() + " ) \r\n values ( \r\n ";
+
+                    foreach (string colname1 in colname)
+                    {
+                        sqlnow = sqlnow + "'" + dr[colname1.Trim()].ToString() + "', \r\n";
+                    }
+
+                    sqlsum = sqlsum + sqlnow.Substring(0, sqlnow.Length - 4) + ") \r\n";
+                }
+                
             }
 
 
@@ -264,10 +295,10 @@ namespace WindowsFormsApplication1
                 s = "";
                 foreach (string colnamestring in ColName)
                 {
-                    s = s + colnamestring + ",";
+                    s = s + colnamestring + ", \r\n";
                 }
 
-                this.TextBox6.Text = s.Substring(0, s.Length - 1);
+                this.TextBox6.Text = s.Substring(0, s.Length -4);
 
             }
 
@@ -330,6 +361,56 @@ namespace WindowsFormsApplication1
             
 
             this.textBox8.Text = s;
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\x1')
+            {
+                ((TextBox)sender).SelectAll();
+                e.Handled = true;
+            }
+        }
+
+        private void TextBox2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\x1')
+            {
+                ((TextBox)sender).SelectAll();
+                e.Handled = true;
+            }
+        }
+
+        private void TextBox6_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\x1')
+            {
+                ((TextBox)sender).SelectAll();
+                e.Handled = true;
+            }
+        }
+
+        private void TextBox7_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\x1')
+            {
+                ((TextBox)sender).SelectAll();
+                e.Handled = true;
+            }
+        }
+
+        private void textBox8_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '\x1')
+            {
+                ((TextBox)sender).SelectAll();
+                e.Handled = true;
+            }
         }
     }
 

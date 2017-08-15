@@ -59,10 +59,14 @@
             this.Label3 = new System.Windows.Forms.Label();
             this.Label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.GroupBox1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -73,7 +77,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(660, 517);
+            this.tabControl1.Size = new System.Drawing.Size(782, 615);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -87,7 +91,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(651, 495);
+            this.tabPage1.Size = new System.Drawing.Size(774, 589);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "格式化SQL";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -158,6 +162,7 @@
             this.TextBox2.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.TextBox2.Size = new System.Drawing.Size(466, 191);
             this.TextBox2.TabIndex = 8;
+            this.TextBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox2_KeyPress);
             // 
             // TextBox1
             // 
@@ -167,9 +172,11 @@
             this.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Both;
             this.TextBox1.Size = new System.Drawing.Size(466, 178);
             this.TextBox1.TabIndex = 7;
+            this.TextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox1_KeyPress);
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.groupBox2);
             this.tabPage2.Controls.Add(this.checkBox2);
             this.tabPage2.Controls.Add(this.Button3);
             this.tabPage2.Controls.Add(this.CheckBox1);
@@ -193,7 +200,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(652, 491);
+            this.tabPage2.Size = new System.Drawing.Size(774, 589);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "导出JSON";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -207,6 +214,7 @@
             this.checkBox2.TabIndex = 40;
             this.checkBox2.Text = "JSON忽略空值";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // Button3
             // 
@@ -261,12 +269,13 @@
             // 
             // TextBox7
             // 
-            this.TextBox7.Location = new System.Drawing.Point(78, 184);
+            this.TextBox7.Location = new System.Drawing.Point(425, 191);
             this.TextBox7.Multiline = true;
             this.TextBox7.Name = "TextBox7";
             this.TextBox7.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TextBox7.Size = new System.Drawing.Size(487, 59);
+            this.TextBox7.Size = new System.Drawing.Size(274, 103);
             this.TextBox7.TabIndex = 33;
+            this.TextBox7.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox7_KeyPress);
             // 
             // TextBox6
             // 
@@ -274,8 +283,9 @@
             this.TextBox6.Multiline = true;
             this.TextBox6.Name = "TextBox6";
             this.TextBox6.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.TextBox6.Size = new System.Drawing.Size(487, 59);
+            this.TextBox6.Size = new System.Drawing.Size(282, 262);
             this.TextBox6.TabIndex = 32;
+            this.TextBox6.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TextBox6_KeyPress);
             // 
             // TextBox5
             // 
@@ -293,12 +303,13 @@
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(21, 255);
+            this.textBox8.Location = new System.Drawing.Point(78, 401);
             this.textBox8.Multiline = true;
             this.textBox8.Name = "textBox8";
             this.textBox8.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBox8.Size = new System.Drawing.Size(544, 228);
+            this.textBox8.Size = new System.Drawing.Size(677, 188);
             this.textBox8.TabIndex = 29;
+            this.textBox8.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox8_KeyPress);
             // 
             // textBox9
             // 
@@ -319,7 +330,7 @@
             // Label7
             // 
             this.Label7.AutoSize = true;
-            this.Label7.Location = new System.Drawing.Point(19, 184);
+            this.Label7.Location = new System.Drawing.Point(378, 194);
             this.Label7.Name = "Label7";
             this.Label7.Size = new System.Drawing.Size(41, 12);
             this.Label7.TabIndex = 26;
@@ -379,11 +390,44 @@
             this.label8.TabIndex = 20;
             this.label8.Text = "服务器：";
             // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Checked = true;
+            this.radioButton3.Location = new System.Drawing.Point(13, 20);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(83, 16);
+            this.radioButton3.TabIndex = 41;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "生成SELECT";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(13, 42);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(83, 16);
+            this.radioButton4.TabIndex = 42;
+            this.radioButton4.Text = "生成values";
+            this.radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radioButton3);
+            this.groupBox2.Controls.Add(this.radioButton4);
+            this.groupBox2.Location = new System.Drawing.Point(382, 116);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(114, 66);
+            this.groupBox2.TabIndex = 43;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "groupBox2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 517);
+            this.ClientSize = new System.Drawing.Size(782, 615);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -395,6 +439,8 @@
             this.GroupBox1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -432,6 +478,9 @@
         internal System.Windows.Forms.Label Label2;
         internal System.Windows.Forms.Label label8;
         internal System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton4;
     }
 }
 
