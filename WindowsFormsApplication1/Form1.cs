@@ -77,7 +77,17 @@ namespace WindowsFormsApplication1
             {
                 string s = "";
                 s=this.TextBox1.Text.Replace("\"","\\\"");
-                this.TextBox2.Text = SC(s.Trim(), this.textBox3.Text.Trim());
+
+                
+
+                DataSet ds = new DataSet();
+                ds= Helper.JsonHelper.DeserializeJsonToObject<DataSet>(this.TextBox1.Text.Trim());
+
+                s = Helper.JsonHelper.SerializeObject(ds, Newtonsoft.Json.NullValueHandling.Ignore);
+
+
+
+                this.TextBox2.Text = SC(s.Replace("\"", "\\\"").Trim(), this.textBox3.Text.Trim());
             }
         }
 
