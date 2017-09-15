@@ -39,6 +39,9 @@
             this.TextBox2 = new System.Windows.Forms.TextBox();
             this.TextBox1 = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton4 = new System.Windows.Forms.RadioButton();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.Button3 = new System.Windows.Forms.Button();
             this.CheckBox1 = new System.Windows.Forms.CheckBox();
@@ -59,9 +62,7 @@
             this.Label3 = new System.Windows.Forms.Label();
             this.Label2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.radioButton5 = new System.Windows.Forms.RadioButton();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.GroupBox1.SuspendLayout();
@@ -114,11 +115,12 @@
             // 
             // GroupBox1
             // 
+            this.GroupBox1.Controls.Add(this.radioButton5);
             this.GroupBox1.Controls.Add(this.RadioButton2);
             this.GroupBox1.Controls.Add(this.RadioButton1);
             this.GroupBox1.Location = new System.Drawing.Point(520, 202);
             this.GroupBox1.Name = "GroupBox1";
-            this.GroupBox1.Size = new System.Drawing.Size(106, 101);
+            this.GroupBox1.Size = new System.Drawing.Size(106, 166);
             this.GroupBox1.TabIndex = 13;
             this.GroupBox1.TabStop = false;
             // 
@@ -130,7 +132,6 @@
             this.RadioButton2.Name = "RadioButton2";
             this.RadioButton2.Size = new System.Drawing.Size(35, 16);
             this.RadioButton2.TabIndex = 1;
-            this.RadioButton2.TabStop = true;
             this.RadioButton2.Text = "C#";
             this.RadioButton2.UseVisualStyleBackColor = true;
             // 
@@ -204,6 +205,39 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "导出JSON";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.radioButton3);
+            this.groupBox2.Controls.Add(this.radioButton4);
+            this.groupBox2.Location = new System.Drawing.Point(382, 116);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(114, 66);
+            this.groupBox2.TabIndex = 43;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "groupBox2";
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Checked = true;
+            this.radioButton3.Location = new System.Drawing.Point(13, 20);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(83, 16);
+            this.radioButton3.TabIndex = 41;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "生成SELECT";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton4
+            // 
+            this.radioButton4.AutoSize = true;
+            this.radioButton4.Location = new System.Drawing.Point(13, 42);
+            this.radioButton4.Name = "radioButton4";
+            this.radioButton4.Size = new System.Drawing.Size(83, 16);
+            this.radioButton4.TabIndex = 42;
+            this.radioButton4.Text = "生成values";
+            this.radioButton4.UseVisualStyleBackColor = true;
             // 
             // checkBox2
             // 
@@ -390,38 +424,15 @@
             this.label8.TabIndex = 20;
             this.label8.Text = "服务器：";
             // 
-            // radioButton3
+            // radioButton5
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Checked = true;
-            this.radioButton3.Location = new System.Drawing.Point(13, 20);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(83, 16);
-            this.radioButton3.TabIndex = 41;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "生成SELECT";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(13, 42);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(83, 16);
-            this.radioButton4.TabIndex = 42;
-            this.radioButton4.Text = "生成values";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.radioButton3);
-            this.groupBox2.Controls.Add(this.radioButton4);
-            this.groupBox2.Location = new System.Drawing.Point(382, 116);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(114, 66);
-            this.groupBox2.TabIndex = 43;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.radioButton5.AutoSize = true;
+            this.radioButton5.Location = new System.Drawing.Point(11, 89);
+            this.radioButton5.Name = "radioButton5";
+            this.radioButton5.Size = new System.Drawing.Size(47, 16);
+            this.radioButton5.TabIndex = 2;
+            this.radioButton5.Text = "JSON";
+            this.radioButton5.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -481,6 +492,7 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RadioButton radioButton3;
         private System.Windows.Forms.RadioButton radioButton4;
+        internal System.Windows.Forms.RadioButton radioButton5;
     }
 }
 

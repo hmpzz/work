@@ -52,27 +52,62 @@ namespace WindowsFormsApplication1
             else if (this.RadioButton2.Checked) //生成C#的SQL代码
             
             {
-                if (this.textBox3.Text.ToString().Length == 0)
-                {
-                    sql = "StringBuilder cmd=new StringBuilder(); \r\n" +
-                         "cmd.Clear(); \r\n";
-                    varname = "cmd";
-                }
-                else
-                {
-                    sql = "StringBuilder " + this.textBox3.Text.Trim() + " =new StringBuilder(); \r\n" +
-                        this.textBox3.Text.Trim() + ".Clear(); \r\n";
+                //if (this.textBox3.Text.ToString().Length == 0)
+                //{
+                //    sql = "StringBuilder cmd=new StringBuilder(); \r\n" +
+                //         "cmd.Clear(); \r\n";
+                //    varname = "cmd";
+                //}
+                //else
+                //{
+                //    sql = "StringBuilder " + this.textBox3.Text.Trim() + " =new StringBuilder(); \r\n" +
+                //        this.textBox3.Text.Trim() + ".Clear(); \r\n";
 
-                    varname = this.textBox3.Text.Trim();
-                }
+                //    varname = this.textBox3.Text.Trim();
+                //}
 
-                varname = varname + ".AppendLine( \" ";
+                //varname = varname + ".AppendLine( \" ";
 
+                //this.TextBox2.Text = sql + varname + this.TextBox1.Text.Replace("\r\n", " \" );  \r\n" + varname)+" \" );";
 
-
-
-                this.TextBox2.Text = sql + varname + this.TextBox1.Text.Replace("\r\n", " \" );  \r\n" + varname)+" \" );";
+                this.TextBox2.Text = SC(this.TextBox1.Text.Trim(),this.textBox3.Text.Trim());
             }
+
+            else if (this.radioButton5.Checked)
+            {
+                string s = "";
+                s=this.TextBox1.Text.Replace("\"","\\\"");
+                this.TextBox2.Text = SC(s.Trim(), this.textBox3.Text.Trim());
+            }
+        }
+
+
+        private string SC(string s,string BLM="")
+        {
+            string sql = "";
+            string varname = "";
+
+            if (BLM == "")
+            {
+                sql = "StringBuilder cmd=new StringBuilder(); \r\n" +
+                     "cmd.Clear(); \r\n";
+                varname = "cmd";
+            }
+            else
+            {
+                sql = "StringBuilder " + BLM+ " =new StringBuilder(); \r\n" +
+                    BLM + ".Clear(); \r\n";
+
+                varname = BLM;
+            }
+
+            varname = varname + ".AppendLine( \" ";
+
+
+            sql= sql + varname + s.Replace("\r\n", " \" );  \r\n" + varname) + " \" );";
+
+
+            return sql;
         }
 
         private void button4_Click(object sender, EventArgs e)
